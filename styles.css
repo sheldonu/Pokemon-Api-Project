@@ -16,7 +16,7 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: "Poller", sans-serif;
-    background: linear-gradient(135deg, #3b4cca 0%, #ff3535 100%);
+    background: linear-gradient(135deg, blue 0%, orange 40%, salmon 45%, orange 50%, red 100%);
     color: var(--white-color);
 }
 
@@ -64,4 +64,18 @@ button.correct {
 button.wrong {
     background-color: var(--button-wrong);
     color: var(--white-color);
+}
+
+#loadingMain {
+    height: 200px;
+}
+
+#loadingMain {
+}
+
+#points {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
 }
