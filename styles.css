@@ -27,3 +27,24 @@ body {
     font-weight: 400;
     height: 100px;
 }
+
+#pokemonImage {
+    height: 200px;
+    max-width: 100%;
+}
+
+.options-main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    height: 52px;
+    margin: 10px;
+    width: calc(50% - 20px);
+    font-family: "Poller", sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
