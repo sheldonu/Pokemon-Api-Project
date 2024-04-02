@@ -70,6 +70,14 @@ async function loadQuestionWithOptions() {
 
     resultElement.textContent = "Who's that pokemon?";
     pokemonImageElement.src = pokemon.sprites.other.dream_world.front_default;
+
+    optionsMain.innerHTML = "";
+    options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.onclick = (event) => checkAnswer();
+        optionsMain.appendChild(button);
+    });
 }
 
 // call the inital load
