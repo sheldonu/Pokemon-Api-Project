@@ -13,8 +13,8 @@ const loadingMain = document.getElementById("loadingMain");
 
 
 // function to fetch one pokemon with ID
-async function fetchPokemonById() {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon/1");
+async function fetchPokemonById(id) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const data = await response.json();
     return data;
 }
@@ -22,9 +22,10 @@ async function fetchPokemonById() {
 
 // test function
 async function testFetch() {
-    const pokemon = await fetchPokemonById();
+    const pokemon = await fetchPokemonById(1);
     console.log(pokemon);
 }
 
 // call the test function
 testFetch();
+
