@@ -22,10 +22,43 @@ async function fetchPokemonById(id) {
 
 // test function
 async function testFetch() {
-    const pokemon = await fetchPokemonById(1);
+    const pokemon = await fetchPokemonById(getRandomPokemonId());
     console.log(pokemon);
 }
 
 // call the test function
 testFetch();
 
+
+// randomize the pokemon ID
+function getRandomPokemonId() {
+    return Math.floor(Math.random() * 151) + 1;
+}
+
+
+// function of question with options
+async function loadQuestionWithOptions() {
+    let pokemonId = getRandomPokemonId();
+    while (usedPokemonIds.includes(pokemonId)) {
+        pokemonId = getRandomPokemonId();
+    }
+
+    usedPokemonIds.push(pokemonId);
+    const pokemon = await fetchPokemonById(pokemonId);
+
+    const options = [pokemon.name];
+    const optionsIds = [pokemon.id];
+
+    while (options.length < 4) {
+        let randomPokemonId = getRandomPokemonId();
+        while (optionsIds.includes(randomPokemonId)) {
+            randomPokemonId = getRandomPokemonId();
+        }
+        optionsIds.push(randomPokemonId);
+        
+    }
+}
+
+
+// keep track of what pokemon have already been used
+let usedPokemonIds = [];
