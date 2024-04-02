@@ -35,6 +35,8 @@ function getRandomPokemonId() {
     return Math.floor(Math.random() * 151) + 1;
 }
 
+// keep track of what pokemon have already been used
+let usedPokemonIds = [];
 
 // function of question with options
 async function loadQuestionWithOptions() {
@@ -55,10 +57,17 @@ async function loadQuestionWithOptions() {
             randomPokemonId = getRandomPokemonId();
         }
         optionsIds.push(randomPokemonId);
-        
+
+        const randomPokemon = await fetchPokemonById(randomPokemonId);
+        const randomOption = randomPokemon.name;
+        options.push(randomOption);
+
+        console.log(options);
+        console.log(optionsIds);
     }
+
+    shuffleArray(options);
 }
 
-
-// keep track of what pokemon have already been used
-let usedPokemonIds = [];
+// call the inital load
+loadQuestionWithOptions();
