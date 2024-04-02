@@ -67,7 +67,15 @@ async function loadQuestionWithOptions() {
     }
 
     shuffleArray(options);
+
+    resultElement.textContent = "Who's that pokemon?";
+    pokemonImageElement.src = pokemon.sprites.other.dream_world.front_default;
 }
 
 // call the inital load
 loadQuestionWithOptions();
+
+// function to shuffle the array
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
