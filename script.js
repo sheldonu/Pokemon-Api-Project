@@ -37,6 +37,7 @@ function getRandomPokemonId() {
 
 // keep track of what pokemon have already been used
 let usedPokemonIds = [];
+let count = 0;
 
 // function of question with options
 async function loadQuestionWithOptions() {
@@ -75,10 +76,24 @@ async function loadQuestionWithOptions() {
     options.forEach((option, index) => {
         const button = document.createElement("button");
         button.textContent = option;
-        button.onclick = (event) => checkAnswer();
+        button.onclick = (event) => checkAnswer(option === pokemon.name, event);
         optionsMain.appendChild(button);
     });
 }
+
+// function to check the answer
+function checkAnswer(isCorrect, event) {
+    const selectedButton = document.querySelector(".selected");
+
+    if (selectedButton) {
+        return;
+    }
+
+    event.target.classList.add("selected");
+    count++;
+    totalCount.textContent = count;
+}
+
 
 // call the inital load
 loadQuestionWithOptions();
