@@ -14,6 +14,7 @@ const loadingMain = document.getElementById("loadingMain");
 
 // function to fetch one pokemon with ID
 async function fetchPokemonById(id) {
+    showLoading = true;
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const data = await response.json();
     return data;
@@ -38,9 +39,15 @@ function getRandomPokemonId() {
 // keep track of what pokemon have already been used
 let usedPokemonIds = [];
 let count = 0;
+let points = 0;
+let showLoading = false;
 
 // function of question with options
 async function loadQuestionWithOptions() {
+    if (showloading) {
+        showLoadingWindow();
+        hidePuzzleWindow();
+    }
     let pokemonId = getRandomPokemonId();
     while (usedPokemonIds.includes(pokemonId)) {
         pokemonId = getRandomPokemonId();
@@ -65,6 +72,10 @@ async function loadQuestionWithOptions() {
 
         console.log(options);
         console.log(optionsIds);
+
+        if (options.length === 4) {
+            showLoading = false;
+        }
     }
 
     shuffleArray(options);
@@ -92,6 +103,22 @@ function checkAnswer(isCorrect, event) {
     event.target.classList.add("selected");
     count++;
     totalCount.textContent = count;
+
+    if (isCorrect) {
+        displayResult("Correct!");
+        points++;
+        pointsElement.textContent = points;
+        event.target.classList.add("correct")
+    } else {
+        displayResult("Oof nope... try again!");
+        event.target.classList.add("wrong")
+    }
+
+    // load the next question
+    setTimeout(() => {
+        showLoading = true;
+        loadQuestionWithOptions();
+    }, 1000);
 }
 
 
@@ -105,4 +132,9 @@ function shuffleArray(array) {
 
 function displayResult(result) {
     resultElement.textContent = result;
+}
+
+// hide the loading icon
+function hideLoadingWindow() {
+    loadingMain.classList.add("hide")
 }
