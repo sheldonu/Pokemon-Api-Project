@@ -9,6 +9,8 @@ const pointsElement = document.getElementById("pointsValue");
 
 const totalCount = document.getElementById("totalCount");
 
+const page = document.getElementsByClassName("main");
+
 const loadingMain = document.getElementById("loadingMain");
 
 
@@ -44,7 +46,7 @@ let showLoading = false;
 
 // function of question with options
 async function loadQuestionWithOptions() {
-    if (showloading) {
+    if (showLoading) {
         showLoadingWindow();
         hidePuzzleWindow();
     }
@@ -91,9 +93,10 @@ async function loadQuestionWithOptions() {
         optionsMain.appendChild(button);
     });
 
-    if (!showLoading)
+    if (!showLoading) {
     hideLoadingWindow();
     showPuzzleWindow();
+    }
 }
 
 // function to check the answer
@@ -141,4 +144,20 @@ function displayResult(result) {
 // hide the loading icon
 function hideLoadingWindow() {
     loadingMain.classList.add("hide");
+}
+
+function showLoadingWindow() {
+    page[0].classList.remove("show");
+    loadingMain.classList.remove("hide")
+    loadingMain.classList.add("show")
+}
+
+function showPuzzleWindow() {
+    loadingMain.classList.remove("show");
+    page.classList[0].remove("hide")
+    page.classList[0].add("show")
+}
+
+function hidePuzzleWindow() {
+    page[0].classList.add("hide");
 }
