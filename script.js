@@ -14,6 +14,13 @@ const page = document.getElementsByClassName("main");
 const loadingMain = document.getElementById("loadingMain");
 
 
+// keep track of what pokemon have already been used
+let usedPokemonIds = [];
+let count = 0;
+let points = 0;
+let showLoading = false;
+
+
 // function to fetch one pokemon with ID
 async function fetchPokemonById(id) {
     showLoading = true;
@@ -32,17 +39,6 @@ async function testFetch() {
 // call the test function
 testFetch();
 
-
-// randomize the pokemon ID
-function getRandomPokemonId() {
-    return Math.floor(Math.random() * 151) + 1;
-}
-
-// keep track of what pokemon have already been used
-let usedPokemonIds = [];
-let count = 0;
-let points = 0;
-let showLoading = false;
 
 // function of question with options
 async function loadQuestionWithOptions() {
@@ -99,6 +95,9 @@ async function loadQuestionWithOptions() {
     }
 }
 
+// call the inital load
+loadQuestionWithOptions();
+
 // function to check the answer
 function checkAnswer(isCorrect, event) {
     const selectedButton = document.querySelector(".selected");
@@ -128,9 +127,11 @@ function checkAnswer(isCorrect, event) {
     }, 1000);
 }
 
+// randomize the pokemon ID
+function getRandomPokemonId() {
+    return Math.floor(Math.random() * 151) + 1;
+}
 
-// call the inital load
-loadQuestionWithOptions();
 
 // function to shuffle the array
 function shuffleArray(array) {
