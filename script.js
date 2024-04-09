@@ -90,6 +90,10 @@ async function loadQuestionWithOptions() {
         button.onclick = (event) => checkAnswer(option === pokemon.name, event);
         optionsMain.appendChild(button);
     });
+
+    if (!showLoading)
+    hideLoadingWindow();
+    showPuzzleWindow();
 }
 
 // function to check the answer
@@ -136,5 +140,5 @@ function displayResult(result) {
 
 // hide the loading icon
 function hideLoadingWindow() {
-    loadingMain.classList.add("hide")
+    loadingMain.classList.add("hide");
 }

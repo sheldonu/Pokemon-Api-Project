@@ -87,3 +87,11 @@ button.wrong {
     text-align: center;
     font-family: "Poller", sans-serif;
 }
+
+.show {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
